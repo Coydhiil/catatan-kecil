@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# ===================================================
+# NEXT.JS (.gitignore)
+# ===================================================
 # dependencies
 frontend/node_modules
 frontend/.pnp
@@ -34,8 +37,21 @@ frontend/.pnpm-debug.log*
 .env*
 
 # vercel
-.vercel
+frontend/.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# System files
+Thumbs.db
+db.db
