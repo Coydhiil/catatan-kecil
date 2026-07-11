@@ -42,9 +42,6 @@ export default async function Home() {
                         />
                     </svg>
                     <h3 className="text-lg font-bold text-zinc-800 dark:text-zinc-200">Belum Ada Artikel</h3>
-                    <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
-                        Silakan buat dan publikasikan artikel pertama Anda melalui dashboard admin Strapi.
-                    </p>
                 </div>
             )}
         </main>
