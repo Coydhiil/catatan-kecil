@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { getAllArticles } from '@/lib/strapi';
-import { formatDate } from '@/lib/utils';
+import ArticleCard from './components/articleCard';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,6 +8,7 @@ export default async function Home() {
 
     return (
         <main className="max-w-2xl mx-auto px-6 py-16 antialiased">
+            {/* Header Section with elegant typography and subtle gradient branding */}
             <div className="relative border-b border-zinc-100 dark:border-zinc-800/80 pb-12 mb-16">
                 <div className="absolute -top-12 -left-12 w-48 h-48 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl -z-10 pointer-events-none" />
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-indigo-500/10 dark:bg-indigo-400/5 rounded-full blur-2xl -z-10 pointer-events-none" />
@@ -21,25 +21,12 @@ export default async function Home() {
                 </p>
             </div>
 
+            {/* Articles List (Single Column Feed for Premium Readability and Alignment) */}
             {articles && articles.length > 0 ? (
                 <div className="flex flex-col gap-10">
-                    {articles.map((article) => {
-                        const attrs = article.attributes || article;
-                        return (
-                            <article key={article.id || article.documentId} className="flex flex-col items-start border-b border-zinc-100 dark:border-zinc-800/80 pb-8 last:border-0 last:pb-0">
-                                {attrs.createdAt && (
-                                    <time className="text-xs font-semibold tracking-wide text-zinc-400 dark:text-zinc-500 mb-2 uppercase">
-                                        {formatDate(attrs.createdAt)}
-                                    </time>
-                                )}
-                                <h2 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                                    <Link href={`/article/${attrs.Slug}`}>
-                                        {attrs.Title}
-                                    </Link>
-                                </h2>
-                            </article>
-                        );
-                    })}
+                    {articles.map((article) => (
+                        <ArticleCard key={article.id || article.documentId} article={article} />
+                    ))}
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center py-20 text-center bg-zinc-50 dark:bg-zinc-900/20 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
@@ -58,6 +45,9 @@ export default async function Home() {
                         />
                     </svg>
                     <h3 className="text-lg font-bold text-zinc-800 dark:text-zinc-200">Belum Ada Artikel</h3>
+                    <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
+                        Silakan buat dan publikasikan artikel pertama Anda melalui dashboard admin Strapi.
+                    </p>
                 </div>
             )}
         </main>
