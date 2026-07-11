@@ -8,7 +8,6 @@ export default async function Home() {
 
     return (
         <main className="max-w-2xl mx-auto px-6 py-16 antialiased">
-            {/* Header Section with elegant typography and subtle gradient branding */}
             <div className="relative border-b border-zinc-100 dark:border-zinc-800/80 pb-12 mb-16">
                 <div className="absolute -top-12 -left-12 w-48 h-48 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl -z-10 pointer-events-none" />
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-indigo-500/10 dark:bg-indigo-400/5 rounded-full blur-2xl -z-10 pointer-events-none" />
@@ -20,8 +19,6 @@ export default async function Home() {
                     Berbagi cerita, tips seputar teknologi, tutorial pemrograman, dan catatan perjalanan belajar sehari-hari.
                 </p>
             </div>
-
-            {/* Articles List (Single Column Feed for Premium Readability and Alignment) */}
             {articles && articles.length > 0 ? (
                 <div className="flex flex-col gap-10">
                     {articles.map((article) => (
