@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Blog Pribadi Saya",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 min-h-screen flex flex-col">
+      <body className="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 min-h-screen flex flex-col overflow-x-hidden">
         <Navbar />
         <div className="flex-grow">
           {children}

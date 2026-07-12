@@ -1,15 +1,59 @@
+export interface StrapiMediaFormat {
+    ext: string;
+    url: string;
+    hash: string;
+    mime: string;
+    name: string;
+    path: string | null;
+    size: number;
+    width: number;
+    height: number;
+    sizeInBytes?: number;
+}
+
+export interface StrapiMedia {
+    id: number;
+    documentId?: string;
+    name: string;
+    alternativeText: string | null;
+    caption: string | null;
+    width: number;
+    height: number;
+    formats: {
+        thumbnail?: StrapiMediaFormat;
+        small?: StrapiMediaFormat;
+        medium?: StrapiMediaFormat;
+        large?: StrapiMediaFormat;
+    } | null;
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl: string | null;
+    provider: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
 export interface StrapiArticle {
-    id?: number | string;
+    id: number | string;
     documentId?: string;
     Title?: string;
     Slug?: string;
     createdAt?: string;
     Content?: unknown;
+    Headline?: string;
+    Featured?: boolean;
+    CoverImage?: StrapiMedia | StrapiMedia[] | null;
     attributes?: {
         Title?: string;
         Slug?: string;
         createdAt?: string;
         Content?: unknown;
+        Headline?: string;
+        Featured?: boolean;
+        CoverImage?: StrapiMedia | StrapiMedia[] | null;
     };
 }
 

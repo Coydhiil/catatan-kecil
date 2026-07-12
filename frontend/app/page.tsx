@@ -1,5 +1,5 @@
 import { getAllArticles } from '@/lib/strapi';
-import ArticleCard from './components/articleCard';
+import ArticleCard from './components/ArticleCard';
 
 export const dynamic = 'force-dynamic';
 

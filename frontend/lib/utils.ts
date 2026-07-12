@@ -42,3 +42,13 @@ export function getSnippetFromBlocks(content: BlockNode[] | string | null | unde
     return text;
 }
 
+export function getStrapiMediaUrl(url: string | undefined): string {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+        return url;
+    }
+    const strapiUrl = process.env.STRAPI_API_URL;
+    return `${strapiUrl}${url}`;
+}
+
+
