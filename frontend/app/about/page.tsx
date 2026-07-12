@@ -27,9 +27,11 @@ export default async function AboutPage() {
                                 src="/Fadhiil FN.webp"
                                 alt="Fadhiil Fiannata"
                                 fill
+                                loading="lazy"
+                                placeholder="blur"
                                 sizes="176px"
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                priority
+                                blurDataURL="data:image/webp;base64,UklGRqACAABXRUJQVlA4WAoAAAAgAAAAXAAAXAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggsgAAADAHAJ0BKl0AXQA/EXq0VDi7qqMo9mtjcCIJaQb4HHPhcK+QtmPJOUFusDmXi9wz1Oesx2k0jQNFGqQ1N4y5jopy4AD+4PDVaRB+kszXkx4kkB38Uavp5cRoxNLUkTEc+gTXoR9MLu9DQOfCCT5/9BIcx6PHeQB4qWOD7QVD8HwCRu4AhsSoX2iKRMd7crWuqUsDBAXyjmo91ZHlcRJpLaZs2VQe1qfPD/6YUEg5+bM4AAA="
                             />
                         </div>
                     </div>

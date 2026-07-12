@@ -3,7 +3,7 @@ import Image from 'next/image';
 import nextDynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getAllArticles } from '@/lib/strapi';
-import { formatDate, getStrapiMediaUrl } from '@/lib/utils';
+import { formatDate, getStrapiMediaUrl, getBlurDataURL } from '@/lib/utils';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export const dynamic = 'force-dynamic';
@@ -46,6 +46,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     const coverImageField = attrs.CoverImage;
 
     let coverUrl = '';
+    let blurUrl = '';
     let altText = '';
     let imgWidth = 1200;
     let imgHeight = 630;
@@ -57,6 +58,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             altText = cover.alternativeText || attrs.Title || 'Cover Image';
             imgWidth = cover.width || imgWidth;
             imgHeight = cover.height || imgHeight;
+
+            const thumbnailUrl = cover.formats?.thumbnail?.url || cover.formats?.small?.url || cover.url;
+            if (thumbnailUrl) {
+                const base64Blur = await getBlurDataURL(thumbnailUrl);
+                if (base64Blur) {
+                    blurUrl = base64Blur;
+                }
+            }
         }
     }
 
@@ -84,10 +93,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     <Image
                         src={getStrapiMediaUrl(coverUrl)}
                         alt={altText}
-                        width={imgWidth}
-                        height={imgHeight}
+                        fill
                         sizes="(max-width: 768px) 100vw, 1200px"
-                        className="w-full h-full object-cover"
+                        placeholder={blurUrl ? "blur" : "empty"}
+                        blurDataURL={blurUrl || undefined}
+                        className="object-cover"
+                        loading="lazy"
                     />
                 </div>
             )}
