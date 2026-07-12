@@ -1,13 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
       {
         protocol: "http",
         hostname: "localhost",
@@ -20,6 +15,10 @@ const nextConfig: NextConfig = {
         port: "1337",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      }
     ],
   },
 };

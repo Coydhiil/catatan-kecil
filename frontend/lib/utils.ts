@@ -47,7 +47,7 @@ export function getStrapiMediaUrl(url: string | undefined): string {
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
         return url;
     }
-    const strapiUrl = process.env.STRAPI_API_URL || 'http://localhost:1337';
+    const strapiUrl = process.env.STRAPI_API_URL;
     return `${strapiUrl}${url}`;
 }
 

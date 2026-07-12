@@ -61,7 +61,7 @@ const STRAPI_URL = process.env.STRAPI_API_URL;
 
 export async function getAllArticles(): Promise<StrapiArticle[]> {
     try {
-        const response = await fetch(`${STRAPI_URL}/api/articles?populate=*`, {
+        const response = await fetch(`${STRAPI_URL}/api/articles?populate=CoverImage`, {
             cache: "no-store",
         });
 
@@ -78,7 +78,7 @@ export async function getAllArticles(): Promise<StrapiArticle[]> {
 export async function getArticleBySlug(slug: string): Promise<StrapiArticle | null> {
     try {
         const response = await fetch(
-            `${STRAPI_URL}/api/articles?filters[Slug][$eq]=${slug}&populate=*`,
+            `${STRAPI_URL}/api/articles?filters[Slug][$eq]=${slug}&populate=CoverImage`,
             { cache: 'no-store' }
         );
 
