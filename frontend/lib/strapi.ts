@@ -36,6 +36,19 @@ export interface StrapiMedia {
     updatedAt: string;
 }
 
+export interface StrapiComment {
+    id: number | string;
+    documentId?: string;
+    Name: string;
+    Comment: unknown;
+    createdAt: string;
+    attributes?: {
+        Name: string;
+        Comment: unknown;
+        createdAt: string;
+    };
+}
+
 export interface StrapiArticle {
     id: number | string;
     documentId?: string;
@@ -46,6 +59,7 @@ export interface StrapiArticle {
     Headline?: string;
     Featured?: boolean;
     CoverImage?: StrapiMedia | StrapiMedia[] | null;
+    comment_sections?: StrapiComment[] | null;
     attributes?: {
         Title?: string;
         Slug?: string;
@@ -54,6 +68,9 @@ export interface StrapiArticle {
         Headline?: string;
         Featured?: boolean;
         CoverImage?: StrapiMedia | StrapiMedia[] | null;
+        comment_sections?: {
+            data?: StrapiComment[];
+        } | StrapiComment[] | null;
     };
 }
 
@@ -78,7 +95,7 @@ export async function getAllArticles(): Promise<StrapiArticle[]> {
 export async function getArticleBySlug(slug: string): Promise<StrapiArticle | null> {
     try {
         const response = await fetch(
-            `${STRAPI_URL}/api/articles?filters[Slug][$eq]=${slug}&populate=CoverImage`,
+            `${STRAPI_URL}/api/articles?filters[Slug][$eq]=${slug}&populate[0]=CoverImage&populate[1]=comment_sections`,
             { cache: 'no-store' }
         );
 

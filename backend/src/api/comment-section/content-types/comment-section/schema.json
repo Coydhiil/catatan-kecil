@@ -23,9 +23,9 @@
     },
     "article": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::article.article",
-      "mappedBy": "comment_section"
+      "inversedBy": "comment_sections"
     }
   }
 }

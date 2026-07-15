@@ -43,6 +43,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     }
 
     const attrs = article.attributes || article;
+    const commentsData = attrs.comment_sections;
+    let initialComments: any[] = [];
+    if (commentsData) {
+        initialComments = Array.isArray(commentsData) ? commentsData : ((commentsData as any).data || []);
+    }
     const coverImageField = attrs.CoverImage;
 
     let coverUrl = '';
@@ -109,7 +114,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             <RelatedArticles currentSlug={slug} articles={allArticles} />
 
-            <CommentSection />
+            <CommentSection articleId={article.documentId || article.id} initialComments={initialComments} />
         </main >
     );
 }

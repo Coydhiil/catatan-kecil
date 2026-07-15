@@ -452,10 +452,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    comment_section: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::comment-section.comment-section'
-    >;
     comment_sections: Schema.Attribute.Relation<
       'oneToMany',
       'api::comment-section.comment-section'
@@ -497,7 +493,7 @@ export interface ApiCommentSectionCommentSection
     draftAndPublish: true;
   };
   attributes: {
-    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    article: Schema.Attribute.Relation<'manyToOne', 'api::article.article'>;
     Comment: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

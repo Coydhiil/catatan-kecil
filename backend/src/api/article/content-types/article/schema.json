@@ -40,13 +40,8 @@
     "comment_sections": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::comment-section.comment-section"
-    },
-    "comment_section": {
-      "type": "relation",
-      "relation": "oneToOne",
       "target": "api::comment-section.comment-section",
-      "inversedBy": "article"
+      "mappedBy": "article"
     }
   }
 }
