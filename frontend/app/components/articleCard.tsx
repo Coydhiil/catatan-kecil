@@ -9,7 +9,7 @@ interface ArticleCardProps {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
     const attrs = article.attributes || article;
-    const { Title, Slug, createdAt, Content } = attrs;
+    const { Title, Slug, createdAt, Content, Headline } = attrs;
     const snippet = getSnippetFromBlocks(Content as any, 120);
 
     const getCoverImageUrl = () => {
@@ -33,16 +33,16 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                 {thumbnailUrl ? (
                     <Image
                         src={getStrapiMediaUrl(thumbnailUrl)}
-                        alt={Title || 'Cover Thumbnail'}
+                        alt={Headline || Title || 'Cover Thumbnail'}
                         fill
                         sizes="(max-width: 768px) 100vw, 200px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="object-cover transition-transform duration-500 ease-out"
                         loading="lazy"
                     />
                 ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 dark:from-blue-950/20 dark:to-indigo-950/20 flex items-center justify-center p-4">
                         <span className="text-xl font-extrabold text-blue-500/20 dark:text-blue-400/10 select-none truncate max-w-full">
-                            {Title ? Title[0] : 'B'}
+                            {Headline ? Headline[0] : (Title ? Title[0] : 'B')}
                         </span>
                     </div>
                 )}
@@ -62,7 +62,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                     <h2 className="text-xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 mt-1 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                         <Link href={`/article/${Slug}`}>
                             <span className="absolute -inset-y-0.5 -inset-x-4 z-20 rounded-2xl sm:-inset-x-6" />
-                            <span className="relative z-10">{Title}</span>
+                            <span className="relative z-10">{Headline || Title}</span>
                         </Link>
                     </h2>
                     <p className="relative z-10 text-sm text-zinc-650 dark:text-zinc-450 leading-relaxed mb-4 flex-grow line-clamp-3">
