@@ -452,6 +452,14 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    comment_section: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::comment-section.comment-section'
+    >;
+    comment_sections: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-section.comment-section'
+    >;
     Content: Schema.Attribute.Blocks;
     CoverImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
@@ -474,6 +482,38 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCommentSectionCommentSection
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'comment_sections';
+  info: {
+    displayName: 'Comment Section';
+    pluralName: 'comment-sections';
+    singularName: 'comment-section';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    Comment: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-section.comment-section'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    UserId: Schema.Attribute.UID<'Name'>;
   };
 }
 
@@ -989,6 +1029,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
+      'api::comment-section.comment-section': ApiCommentSectionCommentSection;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

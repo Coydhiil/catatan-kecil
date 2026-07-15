@@ -12,20 +12,7 @@ interface Comment {
 
 export default function CommentSection() {
     const [comments, setComments] = useState<Comment[]>([
-        {
-            id: '1',
-            author: 'Ahmad Fauzi',
-            content: 'Semangat terus bang!!',
-            createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
-            avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
-        },
-        {
-            id: '2',
-            author: 'Budi Santoso',
-            content: 'Penjelasannya mudah dipahami. Ditunggu artikel selanjutnya ya, Kak!"',
-            createdAt: new Date(Date.now() - 3600000 * 6).toISOString(),
-            avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
-        }
+
     ]);
 
     const [author, setAuthor] = useState('');
